@@ -17,3 +17,7 @@ O Pipeline de Entrega (ou *Delivery Pipeline*) é um conceito central no DevOps 
 3) Cite ao menos um padrão de release e sua utilidade
 Padrão de Release: Blue-Green Deployment (Implantação Azul-Verde)
 O Blue-Green Deployment é um dos padrões de release mais eficazes para garantir alta disponibilidade e facilitar rollbacks rápidos em ambientes de produção.
+
+
+Extra da entrega, arrumei a pipeline e coloquei no gitlab.com
+https://gitlab.com/izilbertos/nodejs-gitlabci-demo-main/-/pipelines/1869258407
