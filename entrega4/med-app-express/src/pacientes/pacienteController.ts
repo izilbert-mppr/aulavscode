@@ -10,6 +10,25 @@ import { AppError, Status } from '../error/ErrorHandler.js'
 import { encryptPassword } from '../utils/senhaUtils.js'
 import { pacienteSchema } from './pacienteYupSchema.js';
 import { sanitizacaoPaciente } from './pacienteSanitizations.js'
+// adicionei a o express-validator como solicitado
+import { query, validationResult } from 'express-validator';
+
+
+export const regrasConsultaPorPaciente = [
+  query('userInput')
+    .escape() // converte os caracteres especiais
+    .trim() // limpa o dado para ficar só com a escrita, ou seja tira os espaços
+    .notEmpty().withMessage('O campo não pode estar vazio.')
+    .isString().withMessage('A busca deve ser um texto.')
+    .isLength({ min: 2, max: 80 }).withMessage('A busca deve ter entre 2 e 80 caracteres.')
+    .custom((value) => {
+      const palavrasNaoPermitidas = /==|<script>|--|;/;  //
+      if (palavrasNaoPermitidas.test(value)) {
+        return Promise.reject('A entrada contém caracteres ou padrões não permitidos.');
+      }
+      return true;
+    })
+  ];
 
 export const consultaPorPaciente = async (
   req: Request,

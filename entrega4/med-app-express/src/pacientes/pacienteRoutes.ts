@@ -14,6 +14,7 @@ import {
   exibeTodosPacientes,
   lerPaciente,
   listaConsultasPaciente,
+  regrasConsultaPorPaciente
 } from './pacienteController.js'
 
 const upload = multer(multerConfig)
@@ -21,7 +22,7 @@ const upload = multer(multerConfig)
 export const pacienteRouter = Router()
 
 pacienteRouter.get('/', exibeTodosPacientes)
-pacienteRouter.get('/consulta-por-paciente', consultaPorPaciente)
+pacienteRouter.get('/consulta-por-paciente', regrasConsultaPorPaciente, consultaPorPaciente)
 pacienteRouter.post('/', criarPaciente)
 pacienteRouter.get('/:id', lerPaciente)
 pacienteRouter.get('/:id/consultas', listaConsultasPaciente)
